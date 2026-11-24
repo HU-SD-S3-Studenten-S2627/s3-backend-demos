@@ -24,15 +24,22 @@ public class Player {
     }
 
     public Player(String username, String fullName, String emailAddress) {
+        if(username == null){
+            throw new NullPointerException("username");
+        }
+        if(fullName == null){
+            throw new NullPointerException("fullName");
+        }
+        if(emailAddress == null){
+            throw new NullPointerException("emailAddress");
+        }
         this.username = username;
         this.fullName = fullName;
         this.emailAddress = emailAddress;
     }
 
     public Player(String username) {
-        this.username = username;
-        this.emailAddress = "";
-        this.fullName = "";
+        this(username, "", "");
     }
 
     public String getUsername() {

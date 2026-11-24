@@ -1,5 +1,6 @@
 package nl.hu.s3.project.lobby.presentation;
 
+import jakarta.transaction.Transactional;
 import nl.hu.s3.project.lobby.application.PlayerResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional //Transactional op een test zorgt voor een auto-rollback aan het eind
 public class PlayerControllerTests {
 
     @Autowired
