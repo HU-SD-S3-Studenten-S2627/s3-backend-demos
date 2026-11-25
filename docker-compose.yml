@@ -2,8 +2,15 @@
 # or "docker-compose start" (background process)
 # will setup our development database
 services:
+  db-delayed:
+    image: kffl/speedbump:latest
+    command: [ "--latency=2ms", "--port=5432", "db:5432" ]
+    ports:
+      - "127.0.0.1:15433:5432"
+    depends_on:
+      - db
   db:
-    image: postgres
+    image: postgres:19
     ports:
       # This means you can connect to 'localhost:15432' from your computer
       # and it will patch it through to the container-port 5432

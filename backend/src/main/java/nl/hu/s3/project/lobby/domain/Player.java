@@ -1,9 +1,6 @@
 package nl.hu.s3.project.lobby.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 /**
@@ -12,7 +9,12 @@ import jakarta.persistence.Table;
  */
 @Table(name = "players")
 public class Player {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+//    @Id
     @Column(name = "username")
     private String username;
     @Column(name = "full_name")

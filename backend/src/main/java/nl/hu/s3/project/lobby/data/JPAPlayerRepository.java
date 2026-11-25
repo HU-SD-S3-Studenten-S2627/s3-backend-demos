@@ -41,13 +41,13 @@ public class JPAPlayerRepository implements PlayerRepository {
 
     @Override
     public Player save(Player player) {
-        // Player usernames are assigned by the client, therefore merge supports new and existing players.
-        return entities.merge(player);
+        entities.persist(player);
+        return player;
     }
 
     @Override
     public void delete(Player player) {
-        entities.remove(entities.contains(player) ? player : entities.merge(player));
+        entities.remove(player);
     }
 
 }

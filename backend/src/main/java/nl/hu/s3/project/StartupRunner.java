@@ -3,25 +3,30 @@ package nl.hu.s3.project;
 import jakarta.transaction.Transactional;
 import nl.hu.s3.project.lobby.domain.Player;
 import nl.hu.s3.project.lobby.data.PlayerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 @Component
-@Transactional
 public class StartupRunner implements CommandLineRunner {
 
-    private final PlayerRepository playerDAO;
+    Logger logger = LoggerFactory.getLogger(StartupRunner.class);
+    private DemoContainer demos;
 
-    public StartupRunner(PlayerRepository playerDAO) {
-        this.playerDAO = playerDAO;
+    public StartupRunner(DemoContainer demos) {
+        this.demos = demos;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        if(playerDAO.findAll().isEmpty()){
-            playerDAO.save(new Player("freezeybob", "Bob De Vries", "bob@example.com"));
-            playerDAO.save(new Player("AliceDeVries", "Alice De Vries", "alice@example.com"));
-            playerDAO.save(new Player("bubbahotep", "Bubba Hotep", "swingingmummy@example.com"));
-        }
+
+        StopWatch stopWatch = new StopWatch();
+        logger.debug("Inserting Players");
+        stopWatch.start();
+        this.demos.insertPlayers(5000);
+        stopWatch.stop();
+        logger.debug("Inserted Players took " + stopWatch.getTotalTimeMillis() + " ms");
     }
 }
