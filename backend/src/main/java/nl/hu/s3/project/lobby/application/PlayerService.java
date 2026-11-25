@@ -37,7 +37,9 @@ public class PlayerService {
         PlayerResponse result = new PlayerResponse(
                 player.getUsername(),
                 player.getFullName(),
-                player.getEmailAddress());
+                player.getEmailAddress(),
+                player.getPreferences().stream().map(p -> new PreferenceDTO(p.getName(), p.getValue())).toList()
+        );
         return result;
     }
 

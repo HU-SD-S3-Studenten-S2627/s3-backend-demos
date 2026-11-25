@@ -21,7 +21,10 @@ public class JPAPlayerRepository implements PlayerRepository {
     @Override
     public List<Player> findAll() {
         List<Player> foundPlayers = entities
-                .createQuery("SELECT p FROM Player p", Player.class)
+                .createQuery("""
+                        SELECT p FROM Player p
+                        LEFT JOIN FETCH p.preferences
+                        """, Player.class)
                 .getResultList();
         return foundPlayers;
     }

@@ -44,7 +44,7 @@ public class LoginController {
                 .issuer("HU-SD-S3")
                 .expiration(Date.from(Instant.now().plus(1, DAYS)))
                 .subject(player.getUsername());
-        if (player.getUsername().equals("AliceDeVries")) {
+        if (player.getUsername().equals("Player0")) {
             // Assign the admin role to the configured administrator account.
             builder = builder.claim("role", "ADMIN");
         }

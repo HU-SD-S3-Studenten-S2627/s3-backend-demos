@@ -1,6 +1,11 @@
 package nl.hu.s3.project.lobby.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 /**
@@ -9,18 +14,21 @@ import jakarta.persistence.*;
  */
 @Table(name = "players")
 public class Player {
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    private Long id;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-
-//    @Id
     @Column(name = "username")
     private String username;
     @Column(name = "full_name")
     private String fullName;
     @Column(name = "mail")
     private String emailAddress;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Preference> preferences = new ArrayList<>();
 
     protected Player() {
     }
@@ -61,4 +69,11 @@ public class Player {
         this.fullName = fullName;
     }
 
+    public void addPreference(Preference preference) {
+        this.preferences.add(preference);
+    }
+
+    public List<Preference> getPreferences() {
+        return preferences;
+    }
 }
