@@ -14,12 +14,12 @@ import java.util.List;
  */
 @Table(name = "players")
 public class Player {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//    private Long id;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+//    @Id
     @Column(name = "username")
     private String username;
     @Column(name = "full_name")

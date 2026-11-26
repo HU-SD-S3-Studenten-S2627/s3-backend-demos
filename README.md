@@ -13,3 +13,9 @@ De repository van Player Join-fetcht de preferences nu. Dit is niet exact wat ik
 ## 4. Bidirectionele relaties
 
 Wat doet mappedBy nou precies? Kijk eens kritisch naar de gekke demo-situatie die we opzetten, met en zonder mappedBy.
+
+# Bonus: Logging
+
+Je ziet dat we expliciet Loggers ipv. System.out gebruiken, zodat je het log-level kan tweaken.
+Vergelijk maar eens de performance van de massa-import met/zonder logging. Logging is niet gratis, en het is
+fijn om dit 'tweakbaar' te hebben op productie.

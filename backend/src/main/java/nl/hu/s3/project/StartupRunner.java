@@ -23,12 +23,12 @@ public class StartupRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         StopWatch stopWatch = new StopWatch();
-//        logger.debug("Inserting Players");
+        logger.debug("Inserting Players");
         stopWatch.start();
-//        this.demos.insertPlayers(5000);
+        this.demos.insertPlayers(5000);
 //        this.demos.insertPlayersWithPreferences(500);
-            this.demos.weirdRelations();
+//        this.demos.weirdRelations();
         stopWatch.stop();
-//        logger.debug("Inserted Players took " + stopWatch.getTotalTimeMillis() + " ms");
+        logger.debug("Inserted Players took " + stopWatch.getTotalTimeMillis() + " ms");
     }
 }
