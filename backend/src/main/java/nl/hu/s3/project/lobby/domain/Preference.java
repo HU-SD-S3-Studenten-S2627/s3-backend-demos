@@ -13,13 +13,13 @@ public class Preference {
 
     private String name;
 
-    private int value;
+    private int measure;
 
     protected Preference(){}
 
     public Preference(String name, int value) {
         this.name = name;
-        this.value = value;
+        this.measure = value;
     }
 
     public Long getId() {
@@ -30,7 +30,7 @@ public class Preference {
         return name;
     }
 
-    public int getValue() {
-        return value;
+    public int getMeasure() {
+        return measure;
     }
 }

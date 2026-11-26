@@ -3,9 +3,7 @@ package nl.hu.s3.project.lobby.application;
 import jakarta.transaction.Transactional;
 import nl.hu.s3.project.lobby.data.PlayerRepository;
 import nl.hu.s3.project.lobby.domain.Player;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +36,7 @@ public class PlayerService {
                 player.getUsername(),
                 player.getFullName(),
                 player.getEmailAddress(),
-                player.getPreferences().stream().map(p -> new PreferenceDTO(p.getName(), p.getValue())).toList()
+                player.getPreferences().stream().map(p -> new PreferenceDTO(p.getName(), p.getMeasure())).toList()
         );
         return result;
     }

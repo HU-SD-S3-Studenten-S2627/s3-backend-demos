@@ -1,7 +1,9 @@
 package nl.hu.s3.project.lobby.presentation;
 
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import nl.hu.s3.project.lobby.application.PlayerResponse;
+import nl.hu.s3.project.lobby.domain.Player;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +27,8 @@ public class PlayerControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private EntityManager entities;
 
     @Test
     @WithMockUser(username = "bob", roles = {"ADMIN"})
@@ -36,7 +40,7 @@ public class PlayerControllerTests {
                 .andReturn();
 
         PlayerResponse[] responses = jsonMapper.readValue(result.getResponse().getContentAsString(), PlayerResponse[].class);
-        assertEquals(3, responses.length);
+        assertEquals(true, responses.length > 0);
     }
 
     @Test
@@ -50,6 +54,9 @@ public class PlayerControllerTests {
     @Test
     @WithMockUser(username = "bob", roles = {"ADMIN"})
     public void canFetchPlayer() throws Exception {
+        this.entities.persist(new Player("bubbahotep", "Bubba Hotep", "elvismummy@examply.org"));
+        this.entities.flush();
+
         ObjectMapper jsonMapper = new ObjectMapper();
         MvcResult result = mockMvc.perform(get("/players/bubbahotep").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

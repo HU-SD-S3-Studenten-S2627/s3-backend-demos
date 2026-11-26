@@ -6,6 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ApplicationSmokeTests {
     @Test
-    void applicationStartsWithTheCircularPackageDependencies() {
+    void contextLoads() {
     }
 }
