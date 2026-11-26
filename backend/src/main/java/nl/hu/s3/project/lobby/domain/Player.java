@@ -30,6 +30,9 @@ public class Player {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Preference> preferences = new ArrayList<>();
 
+    @ManyToOne
+    private Game game;
+
     protected Player() {
     }
 
@@ -75,5 +78,22 @@ public class Player {
 
     public List<Preference> getPreferences() {
         return preferences;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "username='" + username + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
     }
 }
